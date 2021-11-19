@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function SearchSideMenu({
   handleSetSearchLocation,
@@ -29,16 +31,18 @@ export default function SearchSideMenu({
         className="flex justify-end"
         onClick={() => handleSetSearchNeeded(false)}
       >
-        <i></i>
-        Close
+        <CloseIcon sx={{ fontSize: 30 }} className="cursor-pointer" />
       </div>
       <div className="flex justify-between gap-2">
-        <input
-          type="text"
-          placeholder="search location"
-          ref={searchInput}
-          className="w-60 bg-transparent p-2 border border-customWhite placeholder-darkGrayBorder"
-        />
+        <label className="relative">
+          <SearchIcon className="pointer-events-none absolute top-2 left-2 text-darkGrayBorder" />
+          <input
+            type="text"
+            placeholder="search location"
+            ref={searchInput}
+            className="w-60 bg-transparent py-2 pl-9 border border-customWhite placeholder-darkGrayBorder outline-none"
+          />
+        </label>
         <button
           className="bg-blueBG p-2 w-20 font-semibold"
           onClick={async () => {

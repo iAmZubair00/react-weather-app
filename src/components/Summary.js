@@ -1,5 +1,7 @@
 import React from "react";
 import { getCorrectScaledTemp } from "../utils";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 
 export default function Summary({
   tempScale,
@@ -53,21 +55,22 @@ export default function Summary({
         >
           Search for Places
         </button>
-        <i
-          onClick={() => {
-            navigator.geolocation.getCurrentPosition((position) => {
-              handleSetSearchLocation(() => {
-                return {
-                  lat: position.coords.latitude,
-                  long: position.coords.longitude,
-                };
+        <div className="w-10 h-10 p-2 bg-grayBG flex justify-center items-center rounded-full cursor-pointer">
+          <GpsFixedIcon
+            sx={{ fontSize: 22 }}
+            onClick={() => {
+              navigator.geolocation.getCurrentPosition((position) => {
+                handleSetSearchLocation(() => {
+                  return {
+                    lat: position.coords.latitude,
+                    long: position.coords.longitude,
+                  };
+                });
               });
-            });
-            handleSetLoading(true);
-          }}
-        >
-          my location
-        </i>
+              handleSetLoading(true);
+            }}
+          />
+        </div>
       </div>
       <div className="flex-grow flex justify-center bg-cloudsBG bg-contain bg-no-repeat relative before:absolute before:w-full before:h-full before:bg-lightBlue before:opacity-90">
         <img
@@ -93,8 +96,8 @@ export default function Summary({
               {[`${finalDate.day},`, finalDate.date, finalDate.month].join(" ")}
             </span>
           </p>
-          <p>
-            <i></i>
+          <p className="flex justify-center items-center">
+            <LocationOnIcon className="w-4 h-5" />
             <span className="font-semibold text-lg">{location}</span>
           </p>
         </div>

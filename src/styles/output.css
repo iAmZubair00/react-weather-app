@@ -596,8 +596,48 @@ video {
   border-color: rgba(229, 231, 235, var(--tw-border-opacity));
 }
 
+.pointer-events-none{
+  pointer-events: none;
+}
+
+.absolute{
+  position: absolute;
+}
+
 .relative{
   position: relative;
+}
+
+.top-0{
+  top: 0px;
+}
+
+.left-0{
+  left: 0px;
+}
+
+.top-1\/2{
+  top: 50%;
+}
+
+.left-2{
+  left: 0.5rem;
+}
+
+.top-8{
+  top: 2rem;
+}
+
+.top-2{
+  top: 0.5rem;
+}
+
+.top-3{
+  top: 0.75rem;
+}
+
+.left-1{
+  left: 0.25rem;
 }
 
 .z-10{
@@ -666,6 +706,10 @@ video {
   height: 12rem;
 }
 
+.h-5{
+  height: 1.25rem;
+}
+
 .min-h-screen{
   min-height: 100vh;
 }
@@ -696,6 +740,10 @@ video {
 
 .w-40{
   width: 10rem;
+}
+
+.w-4{
+  width: 1rem;
 }
 
 .min-w-136px{
@@ -890,6 +938,18 @@ video {
   padding-top: 1.25rem;
 }
 
+.pl-5{
+  padding-left: 1.25rem;
+}
+
+.pl-8{
+  padding-left: 2rem;
+}
+
+.pl-9{
+  padding-left: 2.25rem;
+}
+
 .text-center{
   text-align: center;
 }
@@ -979,6 +1039,11 @@ video {
   color: rgba(17, 14, 60, var(--tw-text-opacity));
 }
 
+.text-darkGrayBorder{
+  --tw-text-opacity: 1;
+  color: rgba(97, 100, 117, var(--tw-text-opacity));
+}
+
 .placeholder-darkGrayBorder:-ms-input-placeholder{
   --tw-placeholder-opacity: 1;
   color: rgba(97, 100, 117, var(--tw-placeholder-opacity));
@@ -987,6 +1052,11 @@ video {
 .placeholder-darkGrayBorder::placeholder{
   --tw-placeholder-opacity: 1;
   color: rgba(97, 100, 117, var(--tw-placeholder-opacity));
+}
+
+.outline-none{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .before\:absolute::before{

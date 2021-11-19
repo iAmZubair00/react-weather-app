@@ -2,7 +2,6 @@ import Summary from "./components/Summary";
 import Detail from "./components/Detail";
 import SearchSideMenu from "./components/SearchSideMenu";
 import { useState, useEffect } from "react";
-import { getCurrentLocation } from "./utils";
 
 const CORS_BRIDGE_API_KEY = "98962845-3242-4056-bec2-0d078e520371";
 const apiOptions = {
@@ -13,8 +12,11 @@ const apiOptions = {
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
-  const [searchLocation, setSearchLocation] = useState(getCurrentLocation());
-  const [searchHistory, setSearchHistory] = useState(["Lahore"]);
+  const [searchLocation, setSearchLocation] = useState({
+    lat: 28.643999,
+    long: 77.091003,
+  });
+  const [searchHistory, setSearchHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tempScale, setTempScale] = useState("c");
   const [searchNeeded, setSearchNeeded] = useState(false);
@@ -45,6 +47,7 @@ function App() {
   };
 
   useEffect(() => {
+    //console.log(searchLocation);
     findIdByLatLong(searchLocation);
   }, [searchLocation]);
 
