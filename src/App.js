@@ -1,7 +1,7 @@
 import Summary from "./components/Summary";
 import Detail from "./components/Detail";
 import SearchSideMenu from "./components/SearchSideMenu";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const CORS_BRIDGE_API_KEY = "98962845-3242-4056-bec2-0d078e520371";
 const apiOptions = {
@@ -21,7 +21,7 @@ function App() {
   const [tempScale, setTempScale] = useState("c");
   const [searchNeeded, setSearchNeeded] = useState(false);
 
-  const findIdByLatLong = async ({ lat, long }) => {
+  const findIdByLatLong = useCallback(async ({ lat, long }) => {
     await fetch(
       `https://cors.bridged.cc/https://www.metaweather.com/api/location/search/?lattlong=${lat},${long}`,
       apiOptions
@@ -29,7 +29,7 @@ function App() {
       .then((response) => response.json())
       .then((jsonData) => getWeather(jsonData[0].woeid))
       .catch((err) => alert("Wrong Location or Location not available"));
-  };
+  }, []);
 
   const getWeather = async (id) => {
     await fetch(
@@ -47,9 +47,8 @@ function App() {
   };
 
   useEffect(() => {
-    //console.log(searchLocation);
     findIdByLatLong(searchLocation);
-  }, [searchLocation]);
+  }, [searchLocation, findIdByLatLong]);
 
   if (loading) return <>Loading data</>;
 
