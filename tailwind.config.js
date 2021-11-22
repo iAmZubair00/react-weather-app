@@ -32,7 +32,9 @@ module.exports = {
         "136px": "136px",
       },
       maxWidth: {},
-      flexGrow: {},
+      flexGrow: {
+        3: "3",
+      },
       gridTemplateColumns: {
         dayCards: "repeat(auto-fit,minmax(133px, 1fr))",
       },

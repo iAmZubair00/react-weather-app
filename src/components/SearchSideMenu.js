@@ -23,7 +23,7 @@ export default function SearchSideMenu({
   return (
     <div
       className={
-        "bg-lightBlue text-customWhite md:w-30% w-full px-8 py-4 flex-col gap-8 " +
+        "bg-lightBlue text-customWhite md:w-30% w-full px-6 py-4 flex-col gap-8 " +
         (searchNeeded ? "flex" : "hidden")
       }
     >
@@ -33,18 +33,18 @@ export default function SearchSideMenu({
       >
         <CloseIcon sx={{ fontSize: 30 }} className="cursor-pointer" />
       </div>
-      <div className="flex justify-between gap-2">
-        <label className="relative">
+      <div className="flex flex-row md:flex-col xl:flex-row justify-between gap-2">
+        <label className="relative flex-grow-3">
           <SearchIcon className="pointer-events-none absolute top-2 left-2 text-darkGrayBorder" />
           <input
             type="text"
             placeholder="search location"
             ref={searchInput}
-            className="w-60 bg-transparent py-2 pl-9 border border-customWhite placeholder-darkGrayBorder outline-none"
+            className="bg-transparent w-full py-2 pl-9 border border-customWhite placeholder-darkGrayBorder outline-none"
           />
         </label>
         <button
-          className="bg-blueBG p-2 w-20 font-semibold"
+          className="bg-blueBG p-2 font-semibold flex-grow"
           onClick={async () => {
             handleSetSearchHistory((prev) => [
               ...prev,
@@ -52,6 +52,7 @@ export default function SearchSideMenu({
             ]);
             const latLong = await getLatLong(searchInput.current.value);
             handleSetSearchLocation(latLong);
+            handleSetSearchNeeded(false);
             handleSetLoading(true);
           }}
         >

@@ -48,7 +48,7 @@ export default function Summary({
         (searchNeeded ? "hidden" : "flex")
       }
     >
-      <div className="p-6 flex flex-col lg:flex-row justify-between items-center text-customWhite">
+      <div className="p-6 flex flex-row md:flex-col md:gap-4 lg:gap-0 lg:flex-row justify-between items-center text-customWhite">
         <button
           className="bg-grayBG font-medium px-4 py-2 min-w-136px"
           onClick={() => handleSetSearchNeeded(true)}

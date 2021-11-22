@@ -10,6 +10,19 @@ const apiOptions = {
   },
 };
 
+var currentLocation;
+const setCurrentLocation = (loc) => {
+  currentLocation = loc;
+};
+
+navigator.geolocation.getCurrentPosition((position) => {
+  setCurrentLocation({
+    lat: position.coords.latitude,
+    long: position.coords.longitude,
+  });
+});
+
+//console.log(currentLocation);
 function App() {
   const [weatherData, setWeatherData] = useState({});
   const [searchLocation, setSearchLocation] = useState({

@@ -61,11 +61,11 @@ export default function Detail({
       <div className="text-customWhite">
         <p className="mb-4 font-bold text-2xl">Today's Highlights</p>
         <div className="flex flex-col gap-12 text-center">
-          <div className="flex gap-12">
+          <div className="flex flex-col sm:flex-row gap-12">
             <Wind windSpeed={windSpeed} windDirection={windDirection} />
             <Humidity humidity={humidity} />
           </div>
-          <div className="flex gap-12">
+          <div className="flex flex-col sm:flex-row gap-12">
             <OtherParams
               paramName={"Visibility"}
               paramValue={visibility}
@@ -82,3 +82,20 @@ export default function Detail({
     </div>
   );
 }
+
+/* 
+const tempScaleBtn = ({ scale, scaleState, setScaleState }) => {
+  return (
+    <button
+      onClick={() => setScaleState(scale)}
+      className={
+        "rounded-full w-10 h-10 font-bold " +
+        (scaleState === scale
+          ? "bg-customWhite text-lessDarkBlue"
+          : "bg-bluishGray text-customWhite")
+      }
+    >
+      &deg;{scale.toUpperCase()}
+    </button>
+  );
+}; */

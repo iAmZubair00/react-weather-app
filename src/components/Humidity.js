@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Humidity({ humidity }) {
   return (
-    <div className="bg-lightBlue flex-grow p-12 py-5 w-1/2 flex flex-col items-center">
+    <div className="bg-lightBlue flex-grow p-12 py-5 sm:w-1/2 flex flex-col items-center">
       <p className="font-medium">Humidity</p>
       <p className="my-5 font-bold text-6xl">
         {humidity}
