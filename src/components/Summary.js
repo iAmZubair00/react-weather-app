@@ -55,7 +55,10 @@ export default function Summary({
         >
           Search for Places
         </button>
-        <div className="w-10 h-10 p-2 bg-grayBG flex justify-center items-center rounded-full cursor-pointer">
+        <div
+          data-content="Find Current Location weather"
+          className="w-10 h-10 p-2 bg-grayBG flex justify-center items-center rounded-full cursor-pointer group "
+        >
           <GpsFixedIcon
             sx={{ fontSize: 22 }}
             onClick={() => {
@@ -70,6 +73,9 @@ export default function Summary({
               handleSetLoading(true);
             }}
           />
+          <div className="group-hover:flex flex-wrap hidden absolute top-20 md:top-32 lg:top-20 px-2 py-1 justify-center items-center rounded-sm text-xs font-bold bg-white text-black z-50">
+            Find Current Location's Weather
+          </div>
         </div>
       </div>
       <div className="flex-grow flex justify-center bg-cloudsBG bg-contain bg-no-repeat relative before:absolute before:w-full before:h-full before:bg-lightBlue before:opacity-90">
