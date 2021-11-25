@@ -37,7 +37,10 @@
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+Below is the design of this app:
+
+![screenshot]https://github.com/iAmZubair00/react-weather-app/blob/master/src/assets/images/design.png)
+![screenshot](https://github.com/iAmZubair00/react-weather-app/blob/master/src/assets/images/design2.png)
 
 
 ### Built With
