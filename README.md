@@ -39,7 +39,7 @@
 
 Below is the design of this app:
 
-![screenshot]https://github.com/iAmZubair00/react-weather-app/blob/master/src/assets/images/design.png)
+![screenshot](https://github.com/iAmZubair00/react-weather-app/blob/master/src/assets/images/design.png)
 ![screenshot](https://github.com/iAmZubair00/react-weather-app/blob/master/src/assets/images/design2.png)
 
 
