@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { WeatherContext } from "../App";
 import { getCorrectScaledTemp } from "../utils";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 
 export default function Summary({
   tempScale,
-  dateToday,
-  weatherState,
-  temp,
-  iconPath,
-  location,
   searchNeeded,
   handleSetSearchNeeded,
   handleSetSearchLocation,
   handleSetLoading,
 }) {
+  // get parameters from App WeatherContext using useContext
+  const { dateToday, weatherState, temp, iconPath, location } =
+    useContext(WeatherContext);
+
   const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
   const months = [
     "Jan",
@@ -57,7 +57,7 @@ export default function Summary({
         </button>
         <div
           data-content="Find Current Location weather"
-          className="w-10 h-10 p-2 bg-grayBG flex justify-center items-center rounded-full cursor-pointer group "
+          className="w-10 h-10 p-2 bg-grayBG flex justify-center items-center rounded-full cursor-pointer group"
         >
           <GpsFixedIcon
             sx={{ fontSize: 22 }}

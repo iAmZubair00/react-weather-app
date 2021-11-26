@@ -1,7 +1,8 @@
+import React, { useState, useEffect, useCallback } from "react";
 import Summary from "./components/Summary";
 import Detail from "./components/Detail";
 import SearchSideMenu from "./components/SearchSideMenu";
-import { useState, useEffect, useCallback } from "react";
+import { getRequiredWeather } from "./utils";
 
 const CORS_BRIDGE_API_KEY = "98962845-3242-4056-bec2-0d078e520371";
 const apiOptions = {
@@ -9,6 +10,8 @@ const apiOptions = {
     "x-cors-grida-api-key": CORS_BRIDGE_API_KEY,
   },
 };
+
+export const WeatherContext = React.createContext();
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
@@ -59,18 +62,6 @@ function App() {
 
   return (
     <div className="text-textColor flex flex-col md:flex-row min-h-screen max-w-full font-raleway text-base">
-      <Summary
-        searchNeeded={searchNeeded}
-        handleSetSearchNeeded={setSearchNeeded}
-        handleSetSearchLocation={setSearchLocation}
-        handleSetLoading={setLoading}
-        tempScale={tempScale}
-        dateToday={weatherData.consolidated_weather[0].applicable_date}
-        weatherState={weatherData.consolidated_weather[0].weather_state_name}
-        temp={Math.trunc(weatherData.consolidated_weather[0].the_temp)}
-        iconPath={weatherData.consolidated_weather[0].weather_state_abbr}
-        location={weatherData.title}
-      />
       <SearchSideMenu
         searchNeeded={searchNeeded}
         handleSetSearchNeeded={setSearchNeeded}
@@ -79,18 +70,16 @@ function App() {
         searchHistory={searchHistory}
         handleSetSearchHistory={setSearchHistory}
       />
-      <Detail
-        windDirection={
-          weatherData.consolidated_weather[0].wind_direction_compass
-        }
-        windSpeed={Math.trunc(weatherData.consolidated_weather[0].wind_speed)}
-        visibility={Math.trunc(weatherData.consolidated_weather[0].visibility)}
-        humidity={weatherData.consolidated_weather[0].humidity}
-        airPressure={weatherData.consolidated_weather[0].air_pressure}
-        forecastData={weatherData.consolidated_weather.slice(1)}
-        tempScale={tempScale}
-        handleSetTempScale={setTempScale}
-      />
+      <WeatherContext.Provider value={getRequiredWeather(weatherData)}>
+        <Summary
+          searchNeeded={searchNeeded}
+          handleSetSearchNeeded={setSearchNeeded}
+          handleSetSearchLocation={setSearchLocation}
+          handleSetLoading={setLoading}
+          tempScale={tempScale}
+        />
+        <Detail tempScale={tempScale} handleSetTempScale={setTempScale} />
+      </WeatherContext.Provider>
     </div>
   );
 }

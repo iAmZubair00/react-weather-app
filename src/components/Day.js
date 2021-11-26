@@ -2,10 +2,7 @@ import React from "react";
 import { getCorrectScaledTemp } from "../utils";
 
 export default function Day({
-  maxTemp,
-  minTemp,
-  iconPath,
-  dateToday,
+  forecast: { maxTemp, minTemp, iconPath, dateToday },
   id,
   tempScale,
 }) {
