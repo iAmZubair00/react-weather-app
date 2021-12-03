@@ -20,7 +20,7 @@ module.exports = {
         textColor: "#A09FB1",
       },
       backgroundImage: {
-        cloudsBG: "url(../assets/images/Cloud-background.png)",
+        cloudsBG: "url('../assets/images/Cloud-background.png')",
       },
       spacing: {
         "2px": "2px",

@@ -69,6 +69,7 @@ export default function SearchSideMenu({
                 const latLong = await getLatLong(item);
                 handleSetSearchLocation(latLong);
                 handleSetLoading(true);
+                handleSetSearchNeeded(false);
               }}
             >
               {item}

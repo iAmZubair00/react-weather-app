@@ -690,6 +690,10 @@ video {
   height: 2.5rem;
 }
 
+.h-5{
+  height: 1.25rem;
+}
+
 .h-2{
   height: 0.5rem;
 }
@@ -700,22 +704,6 @@ video {
 
 .h-48{
   height: 12rem;
-}
-
-.h-5{
-  height: 1.25rem;
-}
-
-.h-7{
-  height: 1.75rem;
-}
-
-.h-6{
-  height: 1.5rem;
-}
-
-.h-4{
-  height: 1rem;
 }
 
 .min-h-screen{
@@ -738,28 +726,16 @@ video {
   width: 2.5rem;
 }
 
+.w-5{
+  width: 1.25rem;
+}
+
 .w-40{
   width: 10rem;
 }
 
 .w-4{
   width: 1rem;
-}
-
-.w-7{
-  width: 1.75rem;
-}
-
-.w-6{
-  width: 1.5rem;
-}
-
-.w-2{
-  width: 0.5rem;
-}
-
-.w-5{
-  width: 1.25rem;
 }
 
 .min-w-136px{
@@ -842,10 +818,6 @@ video {
   gap: 2rem;
 }
 
-.gap-4{
-  gap: 1rem;
-}
-
 .self-end{
   align-self: flex-end;
 }
@@ -917,7 +889,7 @@ video {
 }
 
 .bg-cloudsBG{
-  background-image: url(../assets/images/Cloud-background.png);
+  background-image: url('../assets/images/Cloud-background.png');
 }
 
 .bg-contain{
@@ -942,14 +914,6 @@ video {
 
 .p-2{
   padding: 0.5rem;
-}
-
-.p-5{
-  padding: 1.25rem;
-}
-
-.p-3{
-  padding: 0.75rem;
 }
 
 .px-6\%{
