@@ -3,30 +3,43 @@ export const getCorrectScaledTemp = (scale, temp) =>
 
 export const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export const getRequiredWeather = (weatherData) => {
+export const getRequiredWeather = (weatherData, forecast) => {
+  if(!weatherData) return {}
+
+  // get only daywise Forecast
+  const seenDates = new Set();
+  const dayWiseForecast = forecast?.filter(item => {
+    const dateOnly = item.dt_txt.split(" ")[0]; // extract "YYYY-MM-DD"
+    if (!seenDates.has(dateOnly)) {
+      seenDates.add(dateOnly);
+      return true; // keep this item
+    }
+    return false; // skip this item
+  });
+
   return {
-    dateToday: weatherData.consolidated_weather[0].applicable_date,
-    weatherState: weatherData.consolidated_weather[0].weather_state_name,
-    temp: Math.trunc(weatherData.consolidated_weather[0].the_temp),
-    iconPath: weatherData.consolidated_weather[0].weather_state_abbr,
-    location: weatherData.title,
+    dateToday: new Date(weatherData.dt * 1000),
+    weatherState: weatherData.weather[0].main,
+    temp: Math.trunc(weatherData.main.temp),
+    iconPath: weatherData.weather[0].icon,
+    location: weatherData.name,
     windDirectionAngle: Math.trunc(
-      weatherData.consolidated_weather[0].wind_direction
+      weatherData.wind.deg
     ),
-    windDirection: weatherData.consolidated_weather[0].wind_direction_compass,
-    windSpeed: Math.trunc(weatherData.consolidated_weather[0].wind_speed),
-    visibility: Math.trunc(weatherData.consolidated_weather[0].visibility),
-    humidity: weatherData.consolidated_weather[0].humidity,
-    airPressure: weatherData.consolidated_weather[0].air_pressure,
-    forecastData: weatherData.consolidated_weather.slice(1),
+    ////////////////////////////////////windDirection: weatherData.consolidated_weather[0].wind_direction_compass,
+    windSpeed: Math.trunc(weatherData.wind.speed),
+    visibility: Math.trunc(weatherData.visibility ? weatherData.visibility / 1609.34 : 0),
+    humidity: weatherData.main.humidity,
+    airPressure: weatherData.main.pressure,
+    forecastData: dayWiseForecast,
   };
 };
 
 export const getRequiredForecast = (forecast) => {
   return {
-    dateToday: forecast.applicable_date,
-    minTemp: Math.trunc(forecast.min_temp),
-    maxTemp: Math.trunc(forecast.max_temp),
-    iconPath: forecast.weather_state_abbr,
+    dateToday: new Date(forecast.dt * 1000),
+    minTemp: Math.trunc(forecast.main.temp_min),
+    maxTemp: Math.trunc(forecast.main.temp_max),
+    iconPath: forecast.weather[0].icon,
   };
 };

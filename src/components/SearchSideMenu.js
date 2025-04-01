@@ -12,13 +12,6 @@ export default function SearchSideMenu({
 }) {
   const searchInput = useRef(null);
 
-  const getLatLong = async (location) => {
-    const response = await fetch(
-      `https://nominatim.openstreetmap.org/search/?city=${location}&format=json`
-    );
-    const data = await response.json();
-    return { lat: data[0].lat, long: data[0].lon };
-  };
 
   return (
     <div
@@ -50,8 +43,7 @@ export default function SearchSideMenu({
               ...prev,
               searchInput.current.value,
             ]);
-            const latLong = await getLatLong(searchInput.current.value);
-            handleSetSearchLocation(latLong);
+            handleSetSearchLocation(searchInput.current.value);
             handleSetSearchNeeded(false);
             handleSetLoading(true);
           }}
@@ -66,8 +58,7 @@ export default function SearchSideMenu({
               className="hover:border hover:border-darkGrayBorder p-2 cursor-pointer mb-3"
               key={i}
               onClick={async () => {
-                const latLong = await getLatLong(item);
-                handleSetSearchLocation(latLong);
+                handleSetSearchLocation(item);
                 handleSetLoading(true);
                 handleSetSearchNeeded(false);
               }}

@@ -2,7 +2,7 @@ import React from "react";
 import { getCorrectScaledTemp } from "../utils";
 
 export default function Day({
-  forecast: { maxTemp, minTemp, iconPath, dateToday },
+  forecast: { maxTemp, minTemp, iconPath, dateToday: date },
   id,
   tempScale,
 }) {
@@ -21,8 +21,6 @@ export default function Day({
     "Nov",
     "Dec",
   ];
-  const dateArr = dateToday.split("-");
-  const date = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
 
   const finalDate = {
     day: days[date.getDay()],
@@ -45,7 +43,7 @@ export default function Day({
       <div className="flex justify-center mt-2 mb-5">
         <img
           alt="weatherIcon"
-          src={`https://www.metaweather.com/static/img/weather/${iconPath}.svg`}
+          src={`https://openweathermap.org/img/wn/${iconPath}@2x.png`}
           className="w-14 h-16"
         ></img>
       </div>

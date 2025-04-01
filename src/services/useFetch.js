@@ -1,58 +1,41 @@
-import { useCallback, useEffect, useState } from "react";
-
-const CORS_BRIDGE_API_KEY = "98962845-3242-4056-bec2-0d078e520371";
-const apiOptions = {
-  headers: {
-    "x-cors-grida-api-key": CORS_BRIDGE_API_KEY,
-  },
-};
-
-const baseUrl =
-  "https://cors.bridged.cc/https://www.metaweather.com/api/location/";
+import { useEffect, useState } from "react";
+import { getForecast, getForecastByCords, getWeather, getWeatherByCords } from "./fetch";
 
 const useFetch = (location) => {
   const [data, setData] = useState(null);
+  const [forecast, setForecast] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const findIdByLatLong = useCallback(async (loc) => {
-    const { lat, long } = loc;
-    try {
-      const response = await fetch(
-        baseUrl + `search/?lattlong=${lat},${long}`,
-        apiOptions
-      );
-      if (response.ok) {
-        const json = await response.json();
-        getWeather(json[0].woeid);
-      } else {
-        throw response;
-      }
-    } catch (e) {
-      setError(e);
-    }
-  }, []);
+  const fetchWeather = async () => {
+    try{
+      const weather = typeof location === 'string' ? await getWeather(location) : await getWeatherByCords(location.lat, location.long)
+      setData(weather)    
+    }catch(err){
+      setError(err)
+    }finally{
+      setLoading(false)
+    } 
+  }
 
-  async function getWeather(id) {
-    try {
-      const response = await fetch(baseUrl + `${id}`, apiOptions);
-      if (response.ok) {
-        const json = await response.json();
-        setData(json);
-      } else {
-        throw response;
-      }
-    } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
-    }
+  const fetchForecast = async () => {
+    try{
+      const forecastData = typeof location === 'string' ? await getForecast(location) : await getForecastByCords(location.lat, location.long)
+      setForecast(forecastData)    
+    }catch(err){
+      setError(err)
+    }finally{
+      setLoading(false)
+    } 
   }
 
   useEffect(() => {
-    findIdByLatLong(location);
-  }, [location, findIdByLatLong]);
-  return { data, error, loading, setLoading };
+    if(location){
+      fetchWeather()
+      fetchForecast()
+    } 
+  }, [location]);
+  return { data, forecast, error, loading, setLoading };
 };
 
 export default useFetch;
