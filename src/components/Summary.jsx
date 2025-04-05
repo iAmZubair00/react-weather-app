@@ -1,19 +1,13 @@
-import React, { useContext } from "react";
-import { WeatherContext } from "../App";
+import React from "react";
 import { getCorrectScaledTemp } from "../utils/utils";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
+import { useWeatherData } from "../contexts/WeatherContext";
 
-export default function Summary({
-  tempScale,
-  searchNeeded,
-  handleSetSearchNeeded,
-  handleSetSearchLocation,
-  handleSetLoading,
-}) {
+export default function Summary() {
   // get parameters from App WeatherContext using useContext
-  const { dateToday: date, weatherState, temp, iconPath, location } =
-    useContext(WeatherContext);
+  const { weather, searchNeeded, setSearchNeeded, setSearchLocation, tempScale, setLoading } = useWeatherData();
+  const { dateToday: date, weatherState, temp, iconPath, location } = {...weather};
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
   const months = [
@@ -32,9 +26,9 @@ export default function Summary({
   ];
 
   const finalDate = {
-    day: days[date.getDay()],
-    date: date.getDate(),
-    month: months[date.getMonth()],
+    day: days[date?.getDay()],
+    date: date?.getDate(),
+    month: months[date?.getMonth()],
   };
 
   const correctTemp = getCorrectScaledTemp(tempScale, temp);
@@ -49,7 +43,7 @@ export default function Summary({
       <div className="p-6 flex flex-row md:flex-col md:gap-4 lg:gap-0 lg:flex-row justify-between items-center text-customWhite">
         <button
           className="bg-grayBG font-medium px-4 py-2 min-w-136px"
-          onClick={() => handleSetSearchNeeded(true)}
+          onClick={() => setSearchNeeded(true)}
         >
           Search for Places
         </button>
@@ -61,14 +55,14 @@ export default function Summary({
             sx={{ fontSize: 22 }}
             onClick={() => {
               navigator.geolocation.getCurrentPosition((position) => {
-                handleSetSearchLocation(() => {
+                setSearchLocation(() => {
                   return {
                     lat: position.coords.latitude,
                     long: position.coords.longitude,
                   };
                 });
               });
-              handleSetLoading(true);
+              setLoading(true);
             }}
           />
           <div className="group-hover:flex flex-wrap hidden absolute top-20 md:top-32 lg:top-20 px-2 py-1 justify-center items-center rounded-sm text-xs font-bold bg-white text-black z-50">

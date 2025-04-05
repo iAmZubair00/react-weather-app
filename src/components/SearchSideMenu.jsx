@@ -1,17 +1,12 @@
 import React, { useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
+import { useWeatherData } from "../contexts/WeatherContext";
 
-export default function SearchSideMenu({
-  handleSetSearchLocation,
-  handleSetLoading,
-  searchNeeded,
-  handleSetSearchNeeded,
-}) {
+export default function SearchSideMenu() {
+  const { searchNeeded, setSearchNeeded, setSearchLocation, setLoading } = useWeatherData();
   const searchInput = useRef(null);
   const [searchHistory, setSearchHistory] = useState([]);
-  
-
 
   return (
     <div
@@ -22,7 +17,7 @@ export default function SearchSideMenu({
     >
       <div
         className="flex justify-end"
-        onClick={() => handleSetSearchNeeded(false)}
+        onClick={() => setSearchNeeded(false)}
       >
         <CloseIcon sx={{ fontSize: 30 }} className="cursor-pointer" />
       </div>
@@ -43,9 +38,9 @@ export default function SearchSideMenu({
               ...prev,
               searchInput.current.value,
             ]);
-            handleSetSearchLocation(searchInput.current.value);
-            handleSetSearchNeeded(false);
-            handleSetLoading(true);
+            setSearchLocation(searchInput.current.value);
+            setSearchNeeded(false);
+            setLoading(true);
           }}
         >
           Search
@@ -58,9 +53,9 @@ export default function SearchSideMenu({
               className="hover:border hover:border-darkGrayBorder p-2 cursor-pointer mb-3"
               key={i}
               onClick={async () => {
-                handleSetSearchLocation(item);
-                handleSetLoading(true);
-                handleSetSearchNeeded(false);
+                setSearchLocation(item);
+                setLoading(true);
+                setSearchNeeded(false);
               }}
             >
               {item}

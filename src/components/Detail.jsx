@@ -1,24 +1,26 @@
-import React, { useContext } from "react";
+import React from "react";
 import Day from "./Day";
-import { WeatherContext } from "../App";
 import { getRequiredForecast } from "../utils/utils";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import { useWeatherData } from "../contexts/WeatherContext";
 
-export default function Detail({ tempScale, handleSetTempScale }) {
-  // get parameters from App WeatherContext using useContext
-  const { visibility, airPressure, forecastData } = useContext(WeatherContext);
+export default function Detail({ }) {
+
+  const { tempScale, setTempScale, weather } = useWeatherData();
+  const { visibility, airPressure, forecastData } = weather;
+
   return (
     <div className="bg-darkBlue px-6% py-6 md:w-70% w-full flex flex-col gap-9">
       <div className="flex gap-3 self-end text-lg">
         <TempScaleBtn
           scale="c"
           scaleState={tempScale}
-          setScaleState={handleSetTempScale}
+          setScaleState={setTempScale}
         />
         <TempScaleBtn
           scale="f"
           scaleState={tempScale}
-          setScaleState={handleSetTempScale}
+          setScaleState={setTempScale}
         />
       </div>
       <div className="grid grid-cols-dayCards gap-5 text-center">
@@ -72,8 +74,8 @@ const TempScaleBtn = ({ scale, scaleState, setScaleState }) => (
 
 const Wind = () => {
   // get parameters from App WeatherContext using useContext
-  const { windDirection, windDirectionAngle, windSpeed } =
-    useContext(WeatherContext);
+  const { windDirection, windDirectionAngle, windSpeed } = useWeatherData()?.weather;
+
   return (
     <div className="bg-lightBlue flex-grow p-12 py-5 sm:w-1/2 flex flex-col justify-between gap-3">
       <p className="font-medium">Wind Status</p>
@@ -96,7 +98,7 @@ const Wind = () => {
 
 const Humidity = () => {
   // get parameters from App WeatherContext using useContext
-  const { humidity } = useContext(WeatherContext);
+  const { humidity } = useWeatherData()?.weather;
   return (
     <div className="bg-lightBlue flex-grow p-12 py-5 sm:w-1/2 flex flex-col items-center">
       <p className="font-medium">Humidity</p>

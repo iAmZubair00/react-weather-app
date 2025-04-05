@@ -1,25 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Summary from "./components/Summary";
 import Detail from "./components/Detail";
 import SearchSideMenu from "./components/SearchSideMenu";
-import useFetch from "./hooks/useFetch";
-import { getRequiredWeather } from "./utils/utils";
+import { useWeatherData, WeatherProvider } from "./contexts/WeatherContext";
 
 export const WeatherContext = React.createContext();
 
 function App() {
-  const [searchLocation, setSearchLocation] = useState('lahore');
-  const [tempScale, setTempScale] = useState("c");
-  const [searchNeeded, setSearchNeeded] = useState(false);
 
-  const {
-    data: weatherData,
-    forecast,
-    error,
-    loading,
-    setLoading,
-  } = useFetch(searchLocation);
-
+  const { error, loading } = useWeatherData();
   if (error) throw error;
   if (loading)
     return (
@@ -30,22 +19,11 @@ function App() {
 
   return (
     <div className="text-textColor flex flex-col md:flex-row min-h-screen max-w-full font-raleway text-base">
-      <SearchSideMenu
-        searchNeeded={searchNeeded}
-        handleSetSearchNeeded={setSearchNeeded}
-        handleSetSearchLocation={setSearchLocation}
-        handleSetLoading={setLoading}
-      />
-      <WeatherContext.Provider value={getRequiredWeather(weatherData, forecast?.list)}>
-        <Summary
-          searchNeeded={searchNeeded}
-          handleSetSearchNeeded={setSearchNeeded}
-          handleSetSearchLocation={setSearchLocation}
-          handleSetLoading={setLoading}
-          tempScale={tempScale}
-        />
-        <Detail tempScale={tempScale} handleSetTempScale={setTempScale} />
-      </WeatherContext.Provider>
+      <WeatherProvider>
+        <SearchSideMenu />
+        <Summary />
+        <Detail />
+      </WeatherProvider>
     </div>
   );
 }
