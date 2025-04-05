@@ -4,7 +4,7 @@ import { getRequiredForecast } from "../utils/utils";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { useWeatherData } from "../contexts/WeatherContext";
 
-export default function Detail({ }) {
+export default function Detail() {
 
   const { tempScale, setTempScale, weather } = useWeatherData();
   const { visibility, airPressure, forecastData } = weather;

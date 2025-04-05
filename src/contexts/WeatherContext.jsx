@@ -13,21 +13,15 @@ const WeatherProvider = ({ children }) => {
     data: weatherData,
     forecast,
     loading,
-    error,
     setLoading,
   } = useFetch(searchLocation);
 
   const contextValue = {
     weather: getRequiredWeather(weatherData, forecast?.list),
-    loading,
-    setLoading,
-    error,
-    searchLocation,
-    setSearchLocation,
-    searchNeeded,
-    setSearchNeeded,
-    tempScale,
-    setTempScale,
+    loading, setLoading,
+    searchLocation, setSearchLocation,
+    searchNeeded, setSearchNeeded,
+    tempScale, setTempScale,
   };
 
   // set default location to current location

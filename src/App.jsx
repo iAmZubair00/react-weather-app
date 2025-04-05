@@ -8,8 +8,9 @@ export const WeatherContext = React.createContext();
 
 function App() {
 
-  const { error, loading } = useWeatherData();
-  if (error) throw error;
+  const { loading } = useWeatherData();
+
+  // check if loading is true, then show loading screen
   if (loading)
     return (
       <div className="flex justify-center items-center text-lg w-screen h-screen">

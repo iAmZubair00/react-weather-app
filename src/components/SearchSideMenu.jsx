@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useWeatherData } from "../contexts/WeatherContext";
 
 export default function SearchSideMenu() {
+  
   const { searchNeeded, setSearchNeeded, setSearchLocation, setLoading } = useWeatherData();
   const searchInput = useRef(null);
   const [searchHistory, setSearchHistory] = useState([]);
@@ -33,7 +34,7 @@ export default function SearchSideMenu() {
         </label>
         <button
           className="bg-blueBG p-2 font-semibold flex-grow"
-          onClick={async () => {
+          onClick={() => {
             setSearchHistory((prev) => [
               ...prev,
               searchInput.current.value,
@@ -52,7 +53,7 @@ export default function SearchSideMenu() {
             <li
               className="hover:border hover:border-darkGrayBorder p-2 cursor-pointer mb-3"
               key={i}
-              onClick={async () => {
+              onClick={() => {
                 setSearchLocation(item);
                 setLoading(true);
                 setSearchNeeded(false);
