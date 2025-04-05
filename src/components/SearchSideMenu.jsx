@@ -1,16 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default function SearchSideMenu({
   handleSetSearchLocation,
   handleSetLoading,
-  searchHistory,
-  handleSetSearchHistory,
   searchNeeded,
   handleSetSearchNeeded,
 }) {
   const searchInput = useRef(null);
+  const [searchHistory, setSearchHistory] = useState([]);
+  
 
 
   return (
@@ -39,7 +39,7 @@ export default function SearchSideMenu({
         <button
           className="bg-blueBG p-2 font-semibold flex-grow"
           onClick={async () => {
-            handleSetSearchHistory((prev) => [
+            setSearchHistory((prev) => [
               ...prev,
               searchInput.current.value,
             ]);

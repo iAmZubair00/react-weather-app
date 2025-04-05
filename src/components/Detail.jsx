@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Day from "./Day";
 import { WeatherContext } from "../App";
-import { getRequiredForecast } from "../utils";
+import { getRequiredForecast } from "../utils/utils";
 import NavigationIcon from "@mui/icons-material/Navigation";
 
 export default function Detail({ tempScale, handleSetTempScale }) {

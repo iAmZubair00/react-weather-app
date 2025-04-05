@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { WeatherContext } from "../App";
-import { getCorrectScaledTemp } from "../utils";
+import { getCorrectScaledTemp } from "../utils/utils";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { getCorrectScaledTemp } from "../utils";
+import { getCorrectScaledTemp } from "../utils/utils";
 
 export default function Day({
   forecast: { maxTemp, minTemp, iconPath, dateToday: date },

@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import Summary from "./components/Summary";
 import Detail from "./components/Detail";
 import SearchSideMenu from "./components/SearchSideMenu";
-import { getRequiredWeather } from "./utils";
-import useFetch from "./services/useFetch";
+import useFetch from "./hooks/useFetch";
+import { getRequiredWeather } from "./utils/utils";
 
 export const WeatherContext = React.createContext();
 
 function App() {
   const [searchLocation, setSearchLocation] = useState('lahore');
-  const [searchHistory, setSearchHistory] = useState([]);
   const [tempScale, setTempScale] = useState("c");
   const [searchNeeded, setSearchNeeded] = useState(false);
 
@@ -36,8 +35,6 @@ function App() {
         handleSetSearchNeeded={setSearchNeeded}
         handleSetSearchLocation={setSearchLocation}
         handleSetLoading={setLoading}
-        searchHistory={searchHistory}
-        handleSetSearchHistory={setSearchHistory}
       />
       <WeatherContext.Provider value={getRequiredWeather(weatherData, forecast?.list)}>
         <Summary
