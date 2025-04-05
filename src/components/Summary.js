@@ -12,7 +12,7 @@ export default function Summary({
   handleSetLoading,
 }) {
   // get parameters from App WeatherContext using useContext
-  const { dateToday, weatherState, temp, iconPath, location } =
+  const { dateToday: date, weatherState, temp, iconPath, location } =
     useContext(WeatherContext);
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
@@ -30,8 +30,6 @@ export default function Summary({
     "Nov",
     "Dec",
   ];
-  const dateArr = dateToday.split("-");
-  const date = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
 
   const finalDate = {
     day: days[date.getDay()],
@@ -81,7 +79,7 @@ export default function Summary({
       <div className="flex-grow flex justify-center bg-cloudsBG bg-contain bg-no-repeat relative before:absolute before:w-full before:h-full before:bg-lightBlue before:opacity-90">
         <img
           alt="weatherIcon"
-          src={`https://www.metaweather.com/static/img/weather/${iconPath}.svg`}
+          src={`https://openweathermap.org/img/wn/${iconPath}@2x.png`}
           className="w-40 h-48 z-10"
         ></img>
       </div>

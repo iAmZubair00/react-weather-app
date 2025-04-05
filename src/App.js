@@ -8,16 +8,14 @@ import useFetch from "./services/useFetch";
 export const WeatherContext = React.createContext();
 
 function App() {
-  const [searchLocation, setSearchLocation] = useState({
-    lat: 28.643999,
-    long: 77.091003,
-  });
+  const [searchLocation, setSearchLocation] = useState('lahore');
   const [searchHistory, setSearchHistory] = useState([]);
   const [tempScale, setTempScale] = useState("c");
   const [searchNeeded, setSearchNeeded] = useState(false);
 
   const {
     data: weatherData,
+    forecast,
     error,
     loading,
     setLoading,
@@ -41,7 +39,7 @@ function App() {
         searchHistory={searchHistory}
         handleSetSearchHistory={setSearchHistory}
       />
-      <WeatherContext.Provider value={getRequiredWeather(weatherData)}>
+      <WeatherContext.Provider value={getRequiredWeather(weatherData, forecast?.list)}>
         <Summary
           searchNeeded={searchNeeded}
           handleSetSearchNeeded={setSearchNeeded}

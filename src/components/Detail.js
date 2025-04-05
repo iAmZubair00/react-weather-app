@@ -22,7 +22,7 @@ export default function Detail({ tempScale, handleSetTempScale }) {
         />
       </div>
       <div className="grid grid-cols-dayCards gap-5 text-center">
-        {forecastData.map((dayForecast, index) => (
+        {forecastData?.map((dayForecast, index) => (
           <Day
             key={index}
             id={index}
