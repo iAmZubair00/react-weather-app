@@ -1,6 +1,21 @@
 export const getCorrectScaledTemp = (scale, temp) =>
   scale === "c" ? temp : Math.trunc(temp * (9 / 5) + 32);
 
+export const getFormattedDateParts = (date) => {
+  if (!date) return {};
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+  const months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "July", "Aug", "Sep", "Oct", "Nov", "Dec",
+  ];
+
+  return {
+    day: days[date.getDay()],
+    date: date.getDate(),
+    month: months[date.getMonth()],
+  };
+};
+
 export const getRequiredWeather = (weatherData, forecast) => {
   if(!weatherData) return {}
 

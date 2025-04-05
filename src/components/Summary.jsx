@@ -1,5 +1,5 @@
 import React from "react";
-import { getCorrectScaledTemp } from "../utils/utils";
+import { getCorrectScaledTemp, getFormattedDateParts } from "../utils/utils";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import { useWeatherData } from "../contexts/WeatherContext";
@@ -9,27 +9,7 @@ export default function Summary() {
   const { weather, searchNeeded, setSearchNeeded, setSearchLocation, tempScale, setLoading } = useWeatherData();
   const { dateToday: date, weatherState, temp, iconPath, location } = {...weather};
 
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  const finalDate = {
-    day: days[date?.getDay()],
-    date: date?.getDate(),
-    month: months[date?.getMonth()],
-  };
+  const finalDate = getFormattedDateParts(date);
 
   const correctTemp = getCorrectScaledTemp(tempScale, temp);
 
