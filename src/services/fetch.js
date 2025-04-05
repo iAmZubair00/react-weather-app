@@ -1,6 +1,3 @@
-/* const apiKey = import.meta.env.VITE_API_KEY
-const baseUrl = import.meta.env.VITE_API_BASE_URL */
-
 const apiKey = process.env.REACT_APP_API_KEY
 const baseUrl = process.env.REACT_APP_API_BASE_URL
 
