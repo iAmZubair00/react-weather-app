@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getForecast, getForecastByCords, getWeather, getWeatherByCords } from "../services/fetch";
+import { getForecast, getForecastByCords, getWeather, getWeatherByCords } from "../api";
 
 const useFetch = (location) => {
   const [data, setData] = useState(null);
