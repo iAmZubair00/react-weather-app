@@ -1,32 +1,11 @@
 import React from "react";
-import { getCorrectScaledTemp } from "../utils";
+import { getCorrectScaledTemp, getFormattedDateParts } from "../utils/utils";
 
-export default function Day({
-  forecast: { maxTemp, minTemp, iconPath, dateToday: date },
-  id,
-  tempScale,
-}) {
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+export default function Day({forecast, id, tempScale}) {
 
-  const finalDate = {
-    day: days[date.getDay()],
-    date: date.getDate(),
-    month: months[date.getMonth()],
-  };
+  const { maxTemp, minTemp, iconPath, dateToday: date } = forecast;
+
+  const finalDate = getFormattedDateParts(date);
 
   const correctScaleTemps = {
     max: getCorrectScaledTemp(tempScale, maxTemp),
