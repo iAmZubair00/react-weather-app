@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { getForecast, getForecastByCords, getWeather, getWeatherByCords } from "../api";
+import { IForecastResponse, ILocation, IWeatherResponse } from "../types";
 
-const useFetch = (location) => {
-  const [data, setData] = useState(null);
-  const [forecast, setForecast] = useState(null);
-  const [error, setError] = useState(null);
+const useFetch = (location: ILocation) => {
+  const [data, setData] = useState<IWeatherResponse>({} as IWeatherResponse);
+  const [forecast, setForecast] = useState<IForecastResponse>({} as IForecastResponse);
+  const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   const fetchWeather = async () => {

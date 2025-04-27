@@ -1,7 +1,14 @@
 import React from "react";
 import { getCorrectScaledTemp, getFormattedDateParts } from "../utils/utils";
+import { IForecast } from "../types";
 
-export default function Day({forecast, id, tempScale}) {
+interface IDayProps {
+  forecast: IForecast,
+  id: number,
+  tempScale: string
+}
+
+export default function Day({forecast, id, tempScale}: IDayProps) {
 
   const { maxTemp, minTemp, iconPath, dateToday: date } = forecast;
 

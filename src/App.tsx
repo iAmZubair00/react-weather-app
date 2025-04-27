@@ -4,7 +4,7 @@ import Detail from "./components/Detail";
 import SearchSideMenu from "./components/SearchSideMenu";
 import { useWeatherData, WeatherProvider } from "./contexts/WeatherContext";
 
-export const WeatherContext = React.createContext();
+export const WeatherContext = React.createContext({});
 
 function App() {
 

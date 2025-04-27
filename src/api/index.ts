@@ -1,25 +1,25 @@
 const apiKey = process.env.REACT_APP_API_KEY
 const baseUrl = process.env.REACT_APP_API_BASE_URL
 
-function getWeatherByCords (lat, lon) {
+function getWeatherByCords (lat: number, lon: number) {
   return fetch(`${baseUrl}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
     .then(res => res.json())
     .then(data => data)
 }
 
-function getForecastByCords (lat, lon) {
+function getForecastByCords (lat: number, lon: number) {
   return fetch(`${baseUrl}/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
     .then(res => res.json())
     .then(data => data)
 }
 
-function getWeather (place) {  
+function getWeather (place: string) {  
   return fetch(`${baseUrl}/weather?q=${place}&units=metric&appid=${apiKey}`)
     .then(res => res.json())
     .then(data => data)
 }
 
-function getForecast (place) {
+function getForecast (place: string) {
   return fetch(`${baseUrl}/forecast?q=${place}&units=metric&appid=${apiKey}`)
     .then(res => res.json())
     .then(data => data)

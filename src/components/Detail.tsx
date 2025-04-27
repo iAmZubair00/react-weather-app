@@ -12,16 +12,19 @@ export default function Detail() {
   return (
     <div className="bg-darkBlue px-6% py-6 md:w-70% w-full flex flex-col gap-9">
       <div className="flex gap-3 self-end text-lg">
-        <TempScaleBtn
-          scale="c"
-          scaleState={tempScale}
-          setScaleState={setTempScale}
-        />
-        <TempScaleBtn
-          scale="f"
-          scaleState={tempScale}
-          setScaleState={setTempScale}
-        />
+        {['c', 'f'].map((scale) => (
+          <button
+            onClick={() => setTempScale(scale)}
+            className={
+              "rounded-full w-10 h-10 font-bold " +
+              (tempScale === scale
+                ? "bg-customWhite text-lessDarkBlue"
+                : "bg-bluishGray text-customWhite")
+            }
+          >
+            &deg;{scale.toUpperCase()}
+          </button>
+        ))}
       </div>
       <div className="grid grid-cols-dayCards gap-5 text-center">
         {forecastData?.map((dayForecast, index) => (
@@ -57,20 +60,6 @@ export default function Detail() {
     </div>
   );
 }
-
-const TempScaleBtn = ({ scale, scaleState, setScaleState }) => (
-  <button
-    onClick={() => setScaleState(scale)}
-    className={
-      "rounded-full w-10 h-10 font-bold " +
-      (scaleState === scale
-        ? "bg-customWhite text-lessDarkBlue"
-        : "bg-bluishGray text-customWhite")
-    }
-  >
-    &deg;{scale.toUpperCase()}
-  </button>
-);
 
 const Wind = () => {
   // get parameters from App WeatherContext using useContext
@@ -124,7 +113,7 @@ const Humidity = () => {
   );
 };
 
-const OtherParams = ({ paramName, paramValue, unit }) => {
+const OtherParams = ({ paramName, paramValue, unit }: { paramName: string, paramValue: number, unit: string }) => {
   return (
     <div className="bg-lightBlue flex-grow sm:w-1/2 p-6 pt-5">
       <p className="font-medium">{paramName}</p>

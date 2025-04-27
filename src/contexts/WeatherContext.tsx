@@ -1,11 +1,24 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { getRequiredWeather } from "../utils/utils";
+import { ILocation, IWeather } from "../types";
 
-const WeatherContext = createContext({});
+interface IWeatherContextProps {
+  weather: IWeather,
+  loading: boolean,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  searchLocation: ILocation,
+  setSearchLocation: React.Dispatch<React.SetStateAction<ILocation>>,
+  searchNeeded: boolean, 
+  setSearchNeeded: React.Dispatch<React.SetStateAction<boolean>>,
+  tempScale: string,
+  setTempScale: React.Dispatch<React.SetStateAction<string>>,
+}
 
-const WeatherProvider = ({ children }) => {
-  const [searchLocation, setSearchLocation] = useState(null);
+const WeatherContext = createContext({} as IWeatherContextProps);
+
+const WeatherProvider = ({ children }: PropsWithChildren) => {
+  const [searchLocation, setSearchLocation] = useState<ILocation>('');
   const [searchNeeded, setSearchNeeded] = useState(false);
   const [tempScale, setTempScale] = useState("c");
 

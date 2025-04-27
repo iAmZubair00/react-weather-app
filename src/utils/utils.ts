@@ -1,7 +1,11 @@
-export const getCorrectScaledTemp = (scale, temp) =>
+import { IForecastItemResp, IWeather, IWeatherResponse } from "../types";
+
+export const isObjectEmpty = (obj: {}) => Object.keys(obj).length === 0 && obj.constructor === Object
+
+export const getCorrectScaledTemp = (scale: string, temp: number) =>
   scale === "c" ? temp : Math.trunc(temp * (9 / 5) + 32);
 
-export const getFormattedDateParts = (date) => {
+export const getFormattedDateParts = (date: Date) => {
   if (!date) return {};
   const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
   const months = [
@@ -16,8 +20,8 @@ export const getFormattedDateParts = (date) => {
   };
 };
 
-export const getRequiredWeather = (weatherData, forecast) => {
-  if(!weatherData) return {}
+export const getRequiredWeather = (weatherData: IWeatherResponse, forecast: IForecastItemResp[]): IWeather => {
+  if(!weatherData || isObjectEmpty(weatherData)) return {} as IWeather
 
   // get only daywise Forecast
   const seenDates = new Set();
@@ -40,6 +44,7 @@ export const getRequiredWeather = (weatherData, forecast) => {
       weatherData.wind.deg
     ),
     ////////////////////////////////////windDirection: weatherData.consolidated_weather[0].wind_direction_compass,
+    windDirection: '', // no mapping in current response
     windSpeed: Math.trunc(weatherData.wind.speed),
     visibility: Math.trunc(weatherData.visibility ? weatherData.visibility / 1609.34 : 0),
     humidity: weatherData.main.humidity,
@@ -48,7 +53,7 @@ export const getRequiredWeather = (weatherData, forecast) => {
   };
 };
 
-export const getRequiredForecast = (forecast) => {
+export const getRequiredForecast = (forecast: IForecastItemResp) => {
   return {
     dateToday: new Date(forecast.dt * 1000),
     minTemp: Math.trunc(forecast.main.temp_min),

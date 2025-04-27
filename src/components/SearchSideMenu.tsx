@@ -6,8 +6,8 @@ import { useWeatherData } from "../contexts/WeatherContext";
 export default function SearchSideMenu() {
   
   const { searchNeeded, setSearchNeeded, setSearchLocation, setLoading } = useWeatherData();
-  const searchInput = useRef(null);
-  const [searchHistory, setSearchHistory] = useState([]);
+  const searchInput = useRef<HTMLInputElement>(null);
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
   return (
     <div
@@ -37,9 +37,9 @@ export default function SearchSideMenu() {
           onClick={() => {
             setSearchHistory((prev) => [
               ...prev,
-              searchInput.current.value,
+              searchInput?.current?.value!,
             ]);
-            setSearchLocation(searchInput.current.value);
+            setSearchLocation(searchInput?.current?.value!);
             setSearchNeeded(false);
             setLoading(true);
           }}
