@@ -1,101 +1,36 @@
-<!-- Please update value in the {}  -->
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-<h1 align="center">React Weather app</h1>
+## Getting Started
 
-<div align="center">
-   Solution for a challenge from  <a href="https://devchallenges.io" target="_blank">Devchallenges.io</a>.
-</div>
-
-<div align="center">
-  <h3>
-    <a href="https://weather-app-react-byzubair.vercel.app">
-      Demo
-    </a>
-    <span> | </span>
-    <a href="https://github.com/iAmZubair00/react-weather-app">
-      Solution
-    </a>
-    <span> | </span>
-    <a href="https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv">
-      Challenge
-    </a>
-  </h3>
-</div>
-
-<!-- TABLE OF CONTENTS -->
-
-## Table of Contents
-
-- [Overview](#overview)
-  - [Built With](#built-with)
-- [Features](#features)
-- [How to use](#how-to-use)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
-
-<!-- OVERVIEW -->
-
-## Overview
-
-Below is the design of this app:
-
-![screenshot](https://github.com/iAmZubair00/react-weather-app/blob/master/src/assets/images/design.png)
-
-![screenshot2](https://github.com/iAmZubair00/react-weather-app/blob/master/src/assets/images/design2.PNG)
-
-
-### Built With
-
-<!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
-
-- [React](https://reactjs.org/)
-- [Tailwind](https://tailwindcss.com/)
-- [MetaWeather API](https://www.metaweather.com/api/)
-
-## Features
-
-<!-- List the features of your application or follow the template. Don't share the figma file here :) -->
-
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv) was to build an application to complete the given user stories.
-
-It has the following features:
-1. Search for a city.
-2. Request your current location weather
-3. See the weather of today and the next 5 days.
-4. Convert temperature in Celcius to Fahrenheit and vice versa
-5. See the date and location and image of the weather condition.
-6. See the min and max degree each day.
-7. See wind status, wind direction, humidity percentage, visibility indicator, and air pressure number.
-
-## How To Use
-
-<!-- Example: -->
-
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+First, run the development server:
 
 ```bash
-# Clone this repository
-$ git clone https://github.com/iAmZubair00/react-weather-app
-
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm start
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Acknowledgements
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-<!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- [TailwindCSS](https://tailwindcss.com)
-- [TailwindCSS JIT mode](https://tailwindcss.com/docs/just-in-time-mode)
-- [MetaWeather API](https://www.metaweather.com/api/)
-- [React docs](https://reactjs.org)
-- [Node.js NPM](https://nodejs.org/)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Contact
+## Learn More
 
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@iAmZubair00](https://{github.com/iAmZubair00})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

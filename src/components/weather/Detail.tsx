@@ -1,8 +1,8 @@
 import React from "react";
 import Day from "./Day";
-import { getRequiredForecast } from "../utils/utils";
 import NavigationIcon from "@mui/icons-material/Navigation";
-import { useWeatherData } from "../contexts/WeatherContext";
+import { useWeatherData } from "@/contexts/WeatherContext";
+import { getRequiredForecast } from "@/utils/utils";
 
 export default function Detail() {
 
@@ -14,6 +14,7 @@ export default function Detail() {
       <div className="flex gap-3 self-end text-lg">
         {['c', 'f'].map((scale) => (
           <button
+            key={scale}
             onClick={() => setTempScale(scale)}
             className={
               "rounded-full w-10 h-10 font-bold " +
@@ -37,7 +38,7 @@ export default function Detail() {
         ))}
       </div>
       <div className="text-customWhite">
-        <p className="mb-4 font-bold text-2xl">Today's Highlights</p>
+        <p className="mb-4 font-bold text-2xl">Today&apos;s Highlights</p>
         <div className="flex flex-col gap-12 text-center">
           <div className="flex flex-col sm:flex-row gap-12">
             <Wind />

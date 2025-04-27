@@ -832,7 +832,7 @@ video {
 }
 
 .bg-cloudsBG{
-  background-image: url('../assets/images/Cloud-background.png');
+  background-image: url('/images/Cloud-background.png');
 }
 
 .bg-contain{

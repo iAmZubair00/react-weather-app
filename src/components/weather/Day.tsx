@@ -1,6 +1,6 @@
 import React from "react";
-import { getCorrectScaledTemp, getFormattedDateParts } from "../utils/utils";
-import { IForecast } from "../types";
+import { getCorrectScaledTemp, getFormattedDateParts } from "@/utils/utils";
+import { IForecast } from "@/types";
 
 interface IDayProps {
   forecast: IForecast,

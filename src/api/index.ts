@@ -1,5 +1,5 @@
-const apiKey = process.env.REACT_APP_API_KEY
-const baseUrl = process.env.REACT_APP_API_BASE_URL
+const apiKey = process.env.NEXT_PUBLIC_API_KEY
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
 
 function getWeatherByCords (lat: number, lon: number) {
   return fetch(`${baseUrl}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)

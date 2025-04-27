@@ -1,8 +1,8 @@
 import React from "react";
-import { getCorrectScaledTemp, getFormattedDateParts } from "../utils/utils";
+import { getCorrectScaledTemp, getFormattedDateParts } from "@/utils/utils";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
-import { useWeatherData } from "../contexts/WeatherContext";
+import { useWeatherData } from "@/contexts/WeatherContext";
 
 export default function Summary() {
   // get parameters from App WeatherContext using useContext
@@ -46,7 +46,7 @@ export default function Summary() {
             }}
           />
           <div className="group-hover:flex flex-wrap hidden absolute top-20 md:top-32 lg:top-20 px-2 py-1 justify-center items-center rounded-sm text-xs font-bold bg-white text-black z-50">
-            Find Current Location's Weather
+            Find Current Location&apos;s Weather
           </div>
         </div>
       </div>

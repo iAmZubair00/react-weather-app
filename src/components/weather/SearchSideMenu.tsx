@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
-import { useWeatherData } from "../contexts/WeatherContext";
+import { useWeatherData } from "@/contexts/WeatherContext";
 
 export default function SearchSideMenu() {
   
@@ -37,9 +37,9 @@ export default function SearchSideMenu() {
           onClick={() => {
             setSearchHistory((prev) => [
               ...prev,
-              searchInput?.current?.value!,
+              searchInput?.current?.value as string,
             ]);
-            setSearchLocation(searchInput?.current?.value!);
+            setSearchLocation(searchInput?.current?.value as string);
             setSearchNeeded(false);
             setLoading(true);
           }}
